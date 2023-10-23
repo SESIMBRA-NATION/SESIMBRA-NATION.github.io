@@ -1,1 +1,81 @@
 https://github.com/SESIMBRA-NATION/SESIMBRA-NATION.github.io.git
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ministros</title>
+</head>
+<body>
+    <h1>Saldo do Imperador: <span id="saldoImperador">S$ 0.00</span></h1>
+    <button id="ganharImperador">Ganhar Dinheiro (Imperador)</button>
+    <button id="perderImperador">Perder Dinheiro (Imperador)</button>
+
+    <h1>Saldo de Ramos: <span id="saldoRamos">S$ 0.00</span></h1>
+    <button id="ganharRamos">Ganhar Dinheiro (Ramos)</button>
+    <button id="perderRamos">Perder Dinheiro (Ramos)</button>
+
+    <h1>Saldo de Sarah: <span id="saldoSarah">S$ 0.00</span></h1>
+    <button id="ganharSarah">Ganhar Dinheiro (Sarah)</button>
+    <button id="perderSarah">Perder Dinheiro (Sarah)</button>
+
+    <h1>Saldo de Nuno: <span id="saldoNuno">S$ 0.00</span></h1>
+    <button id="ganharNuno">Ganhar Dinheiro (Nuno)</button>
+    <button id="perderNuno">Perder Dinheiro (Nuno)</button>
+
+    <h1>Saldo de Rasteiro: <span id="saldoRasteiro">S$ 0.00</span></h1>
+    <button id="ganharRasteiro">Ganhar Dinheiro (Rasteiro)</button>
+    <button id="perderRasteiro">Perder Dinheiro (Rasteiro)</button>
+
+    <h1>Saldo de Matilde: <span id="saldoMatilde">S$ 0.00</span></h1>
+    <button id="ganharMatilde">Ganhar Dinheiro (Matilde)</button>
+    <button id="perderMatilde">Perder Dinheiro (Matilde)</button>
+
+    <h1>Saldo de Catarina: <span id="saldoCatarina">S$ 0.00</span></h1>
+    <button id="ganharCatarina">Ganhar Dinheiro (Catarina)</button>
+    <button id="perderCatarina">Perder Dinheiro (Catarina)</button>
+
+    <h1>Saldo de Rocha: <span id="saldoRocha">S$ 0.00</span></h1>
+    <button id="ganharRocha">Ganhar Dinheiro (Rocha)</button>
+    <button id="perderRocha">Perder Dinheiro (Rocha)</button>
+
+    <script>
+        function atualizarSaldo(id, chave) {
+            const saldoSpan = document.getElementById(id);
+            saldoSpan.textContent = `S$ ${parseFloat(localStorage.getItem(chave) || 0).toFixed(2)}`;
+        }
+
+        function atualizarTodosSaldos() {
+            atualizarSaldo('saldoImperador', 'saldoImperador');
+            atualizarSaldo('saldoRamos', 'saldoRamos');
+            atualizarSaldo('saldoSarah', 'saldoSarah');
+            atualizarSaldo('saldoNuno', 'saldoNuno');
+            atualizarSaldo('saldoRasteiro', 'saldoRasteiro');
+            atualizarSaldo('saldoMatilde', 'saldoMatilde');
+            atualizarSaldo('saldoCatarina', 'saldoCatarina');
+            atualizarSaldo('saldoRocha', 'saldoRocha');
+        }
+
+        // Adicione eventos para ganhar e perder dinheiro para Rocha
+        document.getElementById('ganharRocha').addEventListener('click', function () {
+            const valor = parseFloat(prompt("Quanto dinheiro Rocha ganhou?"));
+            if (!isNaN(valor)) {
+                const saldo = parseFloat(localStorage.getItem('saldoRocha') || 0);
+                localStorage.setItem('saldoRocha', saldo + valor);
+                atualizarSaldo('saldoRocha', 'saldoRocha');
+            }
+        });
+
+        document.getElementById('perderRocha').addEventListener('click', function () {
+            const valor = parseFloat(prompt("Quanto dinheiro Rocha perdeu?"));
+            if (!isNaN(valor)) {
+                const saldo = parseFloat(localStorage.getItem('saldoRocha') || 0);
+                localStorage.setItem('saldoRocha', saldo - valor);
+                atualizarSaldo('saldoRocha', 'saldoRocha');
+            }
+        });
+
+        // Atualize os saldos quando a página é carregada
+        atualizarTodosSaldos();
+    </script>
+</body>
+</html>
+
